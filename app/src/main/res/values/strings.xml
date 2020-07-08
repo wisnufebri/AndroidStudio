@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">IMAKO</string>
+
+
+        <string-array name="roles_users">
+            <item></item>
+            <item>Admin</item>
+            <item>User</item>
+        </string-array>
+
+
 </resources>

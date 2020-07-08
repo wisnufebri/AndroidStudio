@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/screen"
     tools:context=".LoginActivity">
     
     <LinearLayout
@@ -17,13 +18,15 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/logo"
+            android:src="@drawable/logo2"
             android:layout_gravity="center_horizontal" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Silahkan isi"
+            android:textColor="@color/colorTextButton"
+            android:textAllCaps="true"
             android:textSize="20sp"
             android:layout_marginTop="40dp"/>
     </LinearLayout>
@@ -42,12 +45,16 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/colorTextButton"
+            android:textAlignment="center"
             android:hint="Username "/>
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password "
+            android:textAlignment="center"
+            android:textColor="@color/colorTextButton"
             android:inputType="textPassword"/>
 
         <Button
@@ -55,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
-            android:background="@color/colorPrimaryDark"
+            android:background="#2995CC"
             android:textColor="@color/colorTextButton"
             android:text="LOGIN"/>
 
