@@ -47,13 +47,13 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextButton"
             android:textAlignment="center"
-            android:hint="Email "/>
+            android:hint="@string/username"/>
 
         <EditText
             android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password "
+            android:hint="@string/password"
             android:textAlignment="center"
             android:textColor="@color/colorTextButton"
             android:inputType="textPassword"/>

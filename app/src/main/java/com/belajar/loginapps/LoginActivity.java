@@ -1,7 +1,5 @@
 package com.belajar.loginapps;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +9,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.belajar.loginapps.apihelper.BaseApiService;
 import com.belajar.loginapps.apihelper.RetrofitClient;
 import com.belajar.loginapps.apihelper.Utility;
@@ -27,7 +28,9 @@ public class LoginActivity extends Activity {
     private Retrofit retrofit;
 
     EditText username, password;
-    Button login;
+    Button login, register;
+
+    private AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +40,24 @@ public class LoginActivity extends Activity {
         Utility.askPermission(this);
         retrofit = RetrofitClient.getClient();
 
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+
         username = (EditText) findViewById(R.id.etUsername);
         password = (EditText) findViewById(R.id.etPassword);
 
+        addValidationToViews();
+
+        register = findViewById(R.id.btnRegister);
+        register.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
+                startActivity(registerIntent);
+                finish();
+            }
+        });
+
         login = (Button) findViewById(R.id.btnLogin);
-
-
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -57,6 +72,12 @@ public class LoginActivity extends Activity {
                 }
             }
         });
+    }
+
+    private void addValidationToViews() {
+        awesomeValidation.addValidation(this, R.id.etUsername, RegexTemplate.NOT_EMPTY, R.string.invalid_username);
+        String regexPassword = ".{8,}";
+        awesomeValidation.addValidation(this, R.id.etPassword, regexPassword, R.string.invalid_password);
     }
 
     private void LoginSubmit(String userName, String password) {
