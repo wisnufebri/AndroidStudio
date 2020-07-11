@@ -1,155 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/screen"
-    tools:context=".MainActivity"
-    tools:layout_editor_absoluteX="23dp"
-    tools:layout_editor_absoluteY="-316dp">
+    tools:context="com.belajar.loginapps.MainActivity">
 
     <LinearLayout
-        android:id="@+id/linear_logo"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:orientation="vertical"
-        android:layout_marginTop="100dp">
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:src="@drawable/logo2"
-            android:layout_gravity="center_horizontal" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="24sp"
+            android:text="HALO"/>
 
+        <TextView
+            android:id="@+id/tvResultNama"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="18sp"/>
     </LinearLayout>
 
-
-    <EditText
-        android:id="@+id/txtUsername"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="250dp"
-        android:ems="10"
-        android:hint="Username"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/txtName"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="300dp"
-        android:ems="10"
-        android:hint="Name"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/txtEmail"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="350dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/txtPassword"
-        android:layout_width="350dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="400dp"
-        android:ems="10"
-        android:hint="password"
-        android:inputType="textPassword" />
-
-    <TextView
-        android:id="@+id/spinnerlabel"
-        android:layout_width="166dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="460dp"
-        android:ems="10"
-        android:textColor="#000000"
-        android:hint="User Roles"
-        android:textSize="18dp" />
-
-    <Spinner
-        android:id="@+id/spinner3"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="205dp"
-        android:layout_marginTop="460dp"
-        android:entries="@array/roles_users" />
-
-    <TextView
-        android:id="@+id/radiolabel"
-        android:layout_width="166dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="500dp"
-        android:ems="10"
-        android:textColor="#000000"
-        android:hint="Active"
-        android:textSize="18dp" />
-
-
-    <RadioGroup
-        android:id="@+id/rbgrup"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="205dp"
-        android:layout_marginTop="500dp">
-        <RadioButton
-            android:id="@+id/radiobtn1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="True" />
-
-        <RadioButton
-            android:id="@+id/radiobtn2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="False"/>
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/btn_register"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="110dp"
-        android:layout_marginTop="600dp"
-        android:background="@color/colorPrimary"
-        android:textColor="@color/colorTextButton"
-        android:text="REGISTER"/>
-
-
 </RelativeLayout>
-

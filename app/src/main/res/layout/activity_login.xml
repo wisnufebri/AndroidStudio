@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/screen"
-    tools:context=".LoginActivity">
+    tools:context="com.belajar.loginapps.LoginActivity">
     
     <LinearLayout
         android:id="@+id/linear_logo"
@@ -43,13 +42,15 @@
         android:orientation="vertical">
         
         <EditText
+            android:id="@+id/etUsername"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextButton"
             android:textAlignment="center"
-            android:hint="Username "/>
+            android:hint="Email "/>
 
         <EditText
+            android:id="@+id/etPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password "
@@ -58,7 +59,7 @@
             android:inputType="textPassword"/>
 
         <Button
-            android:id="@+id/btn_login"
+            android:id="@+id/btnLogin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
@@ -67,7 +68,7 @@
             android:text="LOGIN"/>
 
         <Button
-            android:id="@+id/btn_register"
+            android:id="@+id/btnRegister"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
