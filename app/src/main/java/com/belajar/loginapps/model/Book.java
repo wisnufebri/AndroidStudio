@@ -5,8 +5,21 @@ public class Book {
     private String judul;
     private String penerbit;
     private String penulis;
+    private String thumb;
 
     public Book() {
+    }
+
+    public Book(String thumb) {
+        this.thumb = thumb;
+    }
+
+    public String getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
 
     public Book(String judul, String penulis, String penerbit) {

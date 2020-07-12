@@ -62,6 +62,7 @@ public class RegisterActivity extends Activity {
         retrofit = RetrofitClient.getClient();
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        final LoadingDialog loadingDialog = new LoadingDialog(RegisterActivity.this);
 
         username = findViewById(R.id.etUsername);
         name = findViewById(R.id.etName);
@@ -105,6 +106,8 @@ public class RegisterActivity extends Activity {
         daftar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                loadingDialog.startLoadingDialog();
+
                 if (awesomeValidation.validate()) {
                     List<String> roles1 = new ArrayList<>();
                     roles1.add(roles.getSelectedItem().toString());

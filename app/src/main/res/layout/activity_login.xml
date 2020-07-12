@@ -3,16 +3,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background3"
+    android:background="@drawable/background11"
     tools:context="com.belajar.loginapps.LoginActivity">
-    
+
     <LinearLayout
         android:id="@+id/linear_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:orientation="vertical"
-        android:layout_marginTop="100dp">
+        android:layout_marginTop="70dp">
 
         <ImageView
             android:layout_width="100dp"
@@ -23,56 +23,61 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Silahkan isi"
-            android:textColor="@color/colorTextButton"
+            android:layout_marginTop="40dp"
+            android:fontFamily="sans-serif-condensed-medium"
+            android:text="Hello There"
             android:textAllCaps="true"
-            android:textSize="20sp"
-            android:layout_marginTop="40dp"/>
+            android:textColor="#000000"
+            android:textSize="30sp" />
     </LinearLayout>
 
 
     //for other in here for insert text
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="400dp"
+        android:layout_height="300dp"
         android:layout_below="@+id/linear_logo"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="90dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
+        android:background="@drawable/login_form"
         android:orientation="vertical">
-        
+
         <EditText
             android:id="@+id/etUsername"
-            android:layout_width="match_parent"
+            android:layout_marginTop="25dp"
+            android:layout_width="300dp"
+            android:layout_gravity="center"
             android:layout_height="wrap_content"
-            android:textColor="@color/colorTextButton"
+            android:textColor="#000000"
             android:textAlignment="center"
-            android:textColorHint="#FFFFFF"
+            android:textColorHint="#000000"
             android:hint="@string/username"/>
 
         <EditText
             android:id="@+id/etPassword"
-            android:layout_width="match_parent"
+            android:layout_width="300dp"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:hint="@string/password"
-            android:textColorHint="@color/colorTextButton"
-            android:textAlignment="center"
-            android:textColor="@color/colorTextButton"
-            android:inputType="textPassword"/>
+            android:textColorHint="#040202"
+            android:textAlignment="center" />
 
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="29dp"
             android:background="#2995CC"
-            android:textColor="@color/colorTextButton"
-            android:text="LOGIN"/>
+            android:text="LOGIN"
+            android:textColor="@color/colorTextButton" />
 
         <Button
             android:id="@+id/btnRegister"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="300dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
             android:layout_marginTop="10dp"
             android:background="@color/colorPrimary"
             android:textColor="@color/colorTextButton"

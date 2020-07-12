@@ -58,11 +58,12 @@ public class LoginActivity extends Activity {
             }
         });
 
-        login = (Button) findViewById(R.id.btnLogin);
+        login = findViewById(R.id.btnLogin);
+        final LoadingDialog loadingDialog = new LoadingDialog(LoginActivity.this);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                loadingDialog.startLoadingDialog();
                 if (username.getText().toString().length() == 0) {
                     username.setError("Username harus diisi");
                 } else if (password.getText().toString().length() == 0) {
@@ -95,7 +96,7 @@ public class LoginActivity extends Activity {
                 try {
                     if (response.body().isSuccess()) {
                         Log.e("TAG", "Login Success" + response.body().toString());
-                        AppService.setToken("Bearer "+ response.body().getToken());
+                        AppService.setToken("Bearer " + response.body().getToken());
                         Intent mainIntent = new Intent(LoginActivity.this, BookActivity.class);
                         startActivity(mainIntent);
                         finish();

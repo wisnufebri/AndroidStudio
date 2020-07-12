@@ -13,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.belajar.loginapps.R;
 import com.belajar.loginapps.adapter.BookAdapter;
 import com.belajar.loginapps.adapter.MemberListAdapter;
 import com.belajar.loginapps.apihelper.AppService;
@@ -91,7 +90,7 @@ public class BookHomeFragment<view> extends Fragment {
             bookAdapter.setId(books.getId());
             bookAdapter.setJudul(books.getJudul());
             bookAdapter.setPenulis(books.getPenulis());
-            bookAdapter.setThumb(R.drawable.background);
+            bookAdapter.setThumb(books.getThumb());
             bookAdapterList.add(bookAdapter);
         }
         memberListAdapter.addAll(bookAdapterList);

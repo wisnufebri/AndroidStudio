@@ -23,4 +23,15 @@ public class BookActivity extends AppCompatActivity {
         fragmentTransaction.replace(R.id.content, strCode, "home fragment");
         fragmentTransaction.commit();
     }
+
+    private void openInsertFragment() {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager
+                .beginTransaction();
+        InserHometFragment strInsert = new InserHometFragment();
+        fragmentTransaction.replace(R.id.content, strInsert, "insert fragment");
+        fragmentTransaction.commit();
+    }
+
+
 }

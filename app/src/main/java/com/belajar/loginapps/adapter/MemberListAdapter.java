@@ -1,5 +1,8 @@
 package com.belajar.loginapps.adapter;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,13 +42,19 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.Me
         return memberViewHolder;
     }
 
+    private Bitmap getBitmap(String base64String) {
+        byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+        return decodedByte;
+    }
+
     @Override
     public void onBindViewHolder(MemberViewHolder holder, final int position) {
         final BookAdapter bookAdapter = bookAdapterList.get(position);
-        holder.bookThumb.setImageResource(bookAdapter.getThumb());
+        Bitmap bitmap = getBitmap(bookAdapter.getThumb());
+        holder.bookThumb.setImageBitmap(bitmap);
         holder.judul.setText(bookAdapter.getJudul());
         holder.penulis.setText(bookAdapter.getPenulis());
-
         holder.bookThumb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
