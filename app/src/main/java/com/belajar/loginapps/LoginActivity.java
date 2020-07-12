@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.belajar.loginapps.apihelper.AppService;
 import com.belajar.loginapps.apihelper.BaseApiService;
 import com.belajar.loginapps.apihelper.RetrofitClient;
 import com.belajar.loginapps.apihelper.Utility;
@@ -94,7 +95,8 @@ public class LoginActivity extends Activity {
                 try {
                     if (response.body().isSuccess()) {
                         Log.e("TAG", "Login Success" + response.body().toString());
-                        Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
+                        AppService.setToken("Bearer "+ response.body().getToken());
+                        Intent mainIntent = new Intent(LoginActivity.this, BookActivity.class);
                         startActivity(mainIntent);
                         finish();
                     } else {

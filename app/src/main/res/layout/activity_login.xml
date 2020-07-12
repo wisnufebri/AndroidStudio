@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/screen"
+    android:background="@drawable/background3"
     tools:context="com.belajar.loginapps.LoginActivity">
     
     <LinearLayout
@@ -47,6 +47,7 @@
             android:layout_height="wrap_content"
             android:textColor="@color/colorTextButton"
             android:textAlignment="center"
+            android:textColorHint="#FFFFFF"
             android:hint="@string/username"/>
 
         <EditText
@@ -54,6 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/password"
+            android:textColorHint="@color/colorTextButton"
             android:textAlignment="center"
             android:textColor="@color/colorTextButton"
             android:inputType="textPassword"/>
