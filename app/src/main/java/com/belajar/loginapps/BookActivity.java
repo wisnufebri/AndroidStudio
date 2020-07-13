@@ -5,15 +5,41 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ImageButton;
+
+import com.belajar.loginapps.fragment.BookHomeFragment;
+import com.belajar.loginapps.fragment.InsertHomeFragment;
 
 public class BookActivity extends AppCompatActivity {
+
+    ImageButton add, home;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.book_activity);
         openHomeFragment();
+
+        home = findViewById(R.id.btnHome);
+        add = findViewById(R.id.btnAdd);
+
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openHomeFragment();
+            }
+        });
+
+        add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                insertHomeFragment();
+            }
+        });
     }
+
 
     private void openHomeFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -24,14 +50,12 @@ public class BookActivity extends AppCompatActivity {
         fragmentTransaction.commit();
     }
 
-    private void openInsertFragment() {
+    private void insertHomeFragment() {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager
                 .beginTransaction();
-        InserHometFragment strInsert = new InserHometFragment();
-        fragmentTransaction.replace(R.id.content, strInsert, "insert fragment");
+        InsertHomeFragment insertHomeFragment = new InsertHomeFragment();
+        fragmentTransaction.replace(R.id.content, insertHomeFragment, "insert fragment");
         fragmentTransaction.commit();
     }
-
-
 }

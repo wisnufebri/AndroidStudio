@@ -30,6 +30,7 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/btnHome"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginLeft="15dp"
@@ -37,6 +38,7 @@
             android:src="@drawable/buttonhome"
             android:layout_weight="1" />
         <ImageButton
+            android:id="@+id/btnAdd"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginRight="15dp"

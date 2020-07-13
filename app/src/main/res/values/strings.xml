@@ -16,6 +16,12 @@
     <string name="submit">Submit</string>
     <string name="confirm_email">Confirm Email</string>
     <string name="terms_and_conditions">I agree to the terms and conditions</string>
+    <string name="judul">Judul</string>
+    <string name="penerbit">Penerbit</string>
+    <string name="penulis">Penulis</string>
+    <string name="harga">Harga</string>
+    <string name="tahun">Tahun</string>
+
 
     <string name="invalid_username">Please enter a valid Username</string>
     <string name="invalid_name">Please enter a valid Name</string>
@@ -27,4 +33,5 @@
     <string name="invalid_age">Age must be between 12 and 60.</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment">requestKey</string>
 </resources>

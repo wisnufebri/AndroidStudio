@@ -1,4 +1,4 @@
-package com.belajar.loginapps;
+package com.belajar.loginapps.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.belajar.loginapps.R;
 import com.belajar.loginapps.adapter.BookAdapter;
 import com.belajar.loginapps.adapter.MemberListAdapter;
 import com.belajar.loginapps.apihelper.AppService;

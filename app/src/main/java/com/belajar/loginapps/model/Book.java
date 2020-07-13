@@ -1,31 +1,28 @@
 package com.belajar.loginapps.model;
 
+import android.text.Editable;
+import android.widget.EditText;
+
 public class Book {
-    private int id;
-    private String judul;
-    private String penerbit;
-    private String penulis;
-    private String thumb;
+    int id;
+    String judul;
+    String penerbit;
+    String penulis;
+    int tahun;
+    int harga;
+    String thumb;
 
-    public Book() {
+    public Book(String judul, String penulis, String penerbit, String tahun, String harga) {
     }
 
-    public Book(String thumb) {
-        this.thumb = thumb;
-    }
-
-    public String getThumb() {
-        return thumb;
-    }
-
-    public void setThumb(String thumb) {
-        this.thumb = thumb;
-    }
-
-    public Book(String judul, String penulis, String penerbit) {
+    public Book(int id, String judul, String penerbit, String penulis, int tahun, int harga, String thumb) {
+        this.id = id;
         this.judul = judul;
         this.penerbit = penerbit;
         this.penulis = penulis;
+        this.tahun = tahun;
+        this.harga = harga;
+        this.thumb = thumb;
     }
 
     public int getId() {
@@ -58,5 +55,29 @@ public class Book {
 
     public void setPenulis(String penulis) {
         this.penulis = penulis;
+    }
+
+    public int getTahun() {
+        return tahun;
+    }
+
+    public void setTahun(int tahun) {
+        this.tahun = tahun;
+    }
+
+    public int getHarga() {
+        return harga;
+    }
+
+    public void setHarga(int harga) {
+        this.harga = harga;
+    }
+
+    public String getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
     }
 }
