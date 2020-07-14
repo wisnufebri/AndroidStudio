@@ -12,7 +12,7 @@ public class Book {
     int harga;
     String thumb;
 
-    public Book(String judul, String penulis, String penerbit, String tahun, String harga) {
+    public Book() {
     }
 
     public Book(int id, String judul, String penerbit, String penulis, int tahun, int harga, String thumb) {

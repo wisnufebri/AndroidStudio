@@ -11,4 +11,5 @@ public class AppService {
     public static void setToken(String token) {
         AppService.token = token;
     }
+
 }

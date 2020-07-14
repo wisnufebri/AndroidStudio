@@ -1,16 +1,24 @@
 package com.belajar.loginapps.fragment;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
+import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -19,6 +27,9 @@ import com.belajar.loginapps.LoadingDialog;
 import com.belajar.loginapps.MainActivity;
 import com.belajar.loginapps.R;
 import com.belajar.loginapps.RegisterActivity;
+import com.belajar.loginapps.adapter.BookAdapter;
+import com.belajar.loginapps.apihelper.ApiResponse;
+import com.belajar.loginapps.apihelper.AppService;
 import com.belajar.loginapps.apihelper.BookApiService;
 import com.belajar.loginapps.apihelper.RetrofitClient;
 import com.belajar.loginapps.apihelper.Utility;
@@ -26,6 +37,10 @@ import com.belajar.loginapps.model.Book;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,136 +52,145 @@ import retrofit2.Retrofit;
 
 import static android.content.ContentValues.TAG;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link BlankFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class InsertHomeFragment extends Fragment {
+public class InsertHomeFragment extends Fragment implements View.OnClickListener {
 
     EditText tahun, judul, harga, penulis, penerbit;
     ImageButton btnSend;
+    ImageView imageView;
+    Button addImage;
+    Uri uri;
 
+    public static final int PICK_IMAGE = 1;
+    private String base64Image = "";
     private View view;
-
+    private String TAG = "insertfragment";
     private Retrofit retrofit;
 
-//    // TODO: Rename parameter arguments, choose names that match
-//    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-//    private static final String ARG_PARAM1 = "judul";
-//    private static final String ARG_PARAM2 = "penulis";
-//    private static final String ARG_PARAM3 = "penerbit";
-//    private static final String ARG_PARAM4 = "harga";
-//    private static final String ARG_PARAM5 = "tahun";
-//
-//    // TODO: Rename and change types of parameters
-//    private String atjudul;
-//    private String atpenulis;
-//    private String atpenerbit;
-//    private String atharga;
-//    private String attahun;
-//
-//    public InsertHomeFragment() {
-//        // Required empty public constructor
-//    }
+    private void addImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE);
+    }
+
+    private void initRetrofit() {
+        retrofit = RetrofitClient.getClient();
+    }
 
 
-//    // TODO: Rename and change types and number of parameters
-//    public static BlankFragment newInstance(String atjudul, String atpenerbit, String atpenulis, String atharga, String attahun) {
-//        BlankFragment fragment = new BlankFragment();
-//        Bundle args = new Bundle();
-//        args.putString(ARG_PARAM1, atjudul);
-//        args.putString(ARG_PARAM2, atpenerbit);
-//        args.putString(ARG_PARAM3, atpenulis);
-//        args.putString(ARG_PARAM4, atharga);
-//        args.putString(ARG_PARAM5, attahun);
-//        fragment.setArguments(args);
-//        return fragment;
-//    }
+    private String encodeImage(Bitmap bm) {
+        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+        bm.compress(Bitmap.CompressFormat.JPEG, 60, baos);
+        byte[] b = baos.toByteArray();
+
+        String encImage = Base64.encodeToString(b, Base64.DEFAULT);
+
+        return encImage;
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == PICK_IMAGE) {
+            Uri uri = data.getData();
+            InputStream imageStream;
+            String encodeImage = "";
+            try {
+                imageStream = getContext().getContentResolver().openInputStream(uri);
+                Bitmap selectedImage = BitmapFactory.decodeStream(imageStream);
+                encodeImage = encodeImage(selectedImage);
+                imageView.setImageURI(uri);
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            }
+            base64Image = encodeImage;
+        }
+    }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-//            atjudul = getArguments().getString(ARG_PARAM1);
-//            atpenerbit = getArguments().getString(ARG_PARAM2);
-//            atpenulis = getArguments().getString(ARG_PARAM3);
-//            atharga = getArguments().getString(ARG_PARAM4);
-
-            penerbit = getView().findViewById(R.id.edPenerbit);
-            penulis = getView().findViewById(R.id.edPenulis);
-            harga = getView().findViewById(R.id.edHarga);
-            judul = getView().findViewById(R.id.edJudul);
-            tahun = getView().findViewById(R.id.edTahun);
-            btnSend = getView().findViewById(R.id.buttonSend);
-
-            btnSend.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (judul.getText().toString().length()==0){
-                        judul.setError("Harus disi");
-                    } else if (penerbit.getText().toString().length()==0){
-                        penerbit.setError("Masukkan Penerbit");
-                    } else if (penulis.getText().toString().length()==0){
-                        penulis.setError("Masukkan nama penulis");
-                    } else if (harga.getText().toString().length()==0){
-                        harga.setError("Masukkan Harga Buku");
-                    } else if (tahun.getText().toString().length()==0){
-                        tahun.setError("Masukkan Tahun Terbit");
-                    } else {
-                        Toast.makeText(getActivity(), "Input data berhasil", Toast.LENGTH_SHORT).show();
-                        InsertBook(judul.getText().toString(),
-                                penulis.getText().toString(),
-                                penerbit.getText().toString(),
-                                harga.getText().toString(),
-                                tahun.getText().toString());
-                    }
-                }
-            });
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-
         view = inflater.inflate(R.layout.insert_home_fragment, container, false);
+        initRetrofit();
+
+        penerbit = view.findViewById(R.id.edPenerbit);
+        penulis = view.findViewById(R.id.edPenulis);
+        harga = view.findViewById(R.id.edHarga);
+        judul = view.findViewById(R.id.edJudul);
+        tahun = view.findViewById(R.id.edTahun);
+
+        btnSend = view.findViewById(R.id.buttonSend);
+        imageView = view.findViewById(R.id.gambarbuku);
+        addImage = view.findViewById(R.id.btnaddimage);
+
+        addImage.setOnClickListener(this);
+        btnSend.setOnClickListener(this);
         return view;
     }
 
     private void InsertBook(String judul, String penulis, String penerbit,
-                            String harga, String tahun){
-        Book bookInput = new Book(judul, penulis, penerbit, harga, tahun);
+                            String tahun, String harga) {
+        Book book = new Book();
+        book.setHarga(Integer.valueOf(harga));
+        book.setJudul(judul);
+        book.setPenulis(penulis);
+        book.setPenerbit(penerbit);
+        book.setTahun(Integer.valueOf(tahun));
+        book.setThumb(base64Image);
 
-        BookApiService bookApiService = retrofit.create(BookApiService.class);
-
-        Call<ResponseBody> result = bookApiService.insertBook(bookInput);
-
-        result.enqueue(new Callback<ResponseBody>() {
+        BookApiService apiService = retrofit.create(BookApiService.class);
+        Call<ApiResponse> result = apiService.insertNewBook(AppService.getToken(), book);
+        result.enqueue(new Callback<ApiResponse>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                try { Map<String, Object> retMap = new Gson().fromJson(response.body().string(),
-                        new TypeToken<HashMap<String, Object>>(){
-                        }.getType());
-                    boolean success = (boolean) retMap.get("Success");
-                    if (success){
-                        Log.e(TAG, "onResponse: success" + response.body().toString());
-                        Intent insertIntent = new Intent(getActivity(), MainActivity.class);
-                        startActivity(insertIntent);
-                    } else {
-                        Log.e(TAG, "onResponse: Gagal" + response.body().toString() );
-                        Toast.makeText(getActivity(), "Gagal Menambah data", Toast.LENGTH_SHORT).show();
-                    }
-                } catch (Exception e){
-                    e.printStackTrace();
+            public void onResponse(Call<ApiResponse> call, Response<ApiResponse> response) {
+                if (response.body().isSuccess()) {
+                    Log.e(TAG, "Berhasil Add buku");
+                } else {
+                    Log.e(TAG, "Gagal add buku" + response.body().toString());
                 }
             }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
-
+            public void onFailure(Call<ApiResponse> call, Throwable t) {
+                t.printStackTrace();
             }
         });
+    }
+
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.buttonSend:
+                if (judul.getText().toString().length() == 0) {
+                    judul.setError("Harus disi");
+                } else if (penerbit.getText().toString().length() == 0) {
+                    penerbit.setError("Masukkan Penerbit");
+                } else if (penulis.getText().toString().length() == 0) {
+                    penulis.setError("Masukkan nama penulis");
+                } else if (harga.getText().toString().length() == 0) {
+                    harga.setError("Masukkan Harga Buku");
+                } else if (tahun.getText().toString().length() == 0) {
+                    tahun.setError("Masukkan Tahun Terbit");
+                } else {
+                    InsertBook(judul.getText().toString(),
+                            penulis.getText().toString(),
+                            penerbit.getText().toString(),
+                            harga.getText().toString(),
+                            tahun.getText().toString());
+
+                    Toast.makeText(getActivity(), "Insert success", Toast.LENGTH_SHORT).show();
+                    break;
+                }
+        }
+        switch (view.getId()) {
+            case R.id.btnaddimage:
+                addImage();
+                Toast.makeText(getActivity(), "Success Input Book", Toast.LENGTH_SHORT).show();
+                break;
+        }
     }
 }
