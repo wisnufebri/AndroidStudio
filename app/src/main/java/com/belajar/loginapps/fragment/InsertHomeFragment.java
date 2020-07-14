@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.belajar.loginapps.BookActivity;
 import com.belajar.loginapps.LoadingDialog;
+import com.belajar.loginapps.LoginActivity;
 import com.belajar.loginapps.MainActivity;
 import com.belajar.loginapps.R;
 import com.belajar.loginapps.RegisterActivity;
@@ -150,6 +151,8 @@ public class InsertHomeFragment extends Fragment implements View.OnClickListener
                     Log.e(TAG, "Berhasil Add buku");
                 } else {
                     Log.e(TAG, "Gagal add buku" + response.body().toString());
+                    Intent mainIntent = new Intent(getActivity(), BookActivity.class);
+                    startActivity(mainIntent);
                 }
             }
 

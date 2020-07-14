@@ -1,7 +1,6 @@
 package com.belajar.loginapps;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -32,7 +31,6 @@ public class BookActivity extends AppCompatActivity {
                openHomeFragment();
             }
         });
-
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

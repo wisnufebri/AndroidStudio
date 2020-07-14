@@ -23,7 +23,7 @@
             tools:ignoreContentDescription="true" />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_alignTop="@+id/thumb"
             android:layout_marginLeft="16dp"
             android:layout_toEndOf="@+id/thumb"
@@ -35,7 +35,8 @@
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
                 android:maxLines="1"
-                android:padding="2dp"
+                android:padding="1dp"
+                android:layout_marginTop="10dp"
                 android:text="@string/app_name"
                 android:textColor="?colorPrimary"
                 android:textSize="16sp" />

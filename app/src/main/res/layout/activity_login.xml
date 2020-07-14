@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:fontFamily="sans-serif-condensed-medium"
+            android:fontFamily="sans-serif-black"
             android:text="Hello There"
             android:textAllCaps="true"
             android:textColor="#000000"
@@ -40,7 +40,7 @@
         android:layout_marginTop="90dp"
         android:layout_marginLeft="16dp"
         android:layout_marginRight="16dp"
-        android:background="@drawable/login_form"
+        android:background="@color/colorTextButton"
         android:orientation="vertical">
 
         <EditText
