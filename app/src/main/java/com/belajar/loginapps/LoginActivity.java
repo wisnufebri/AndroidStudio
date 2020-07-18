@@ -1,6 +1,7 @@
 package com.belajar.loginapps;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import com.belajar.loginapps.apihelper.AppService;
 import com.belajar.loginapps.apihelper.BaseApiService;
 import com.belajar.loginapps.apihelper.RetrofitClient;
 import com.belajar.loginapps.apihelper.Utility;
+import com.belajar.loginapps.dummy.DialogUtility;
 import com.belajar.loginapps.model.LoginBody;
 import com.belajar.loginapps.model.LoginResult;
 
@@ -24,12 +26,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+import static java.lang.Thread.sleep;
+
 public class LoginActivity extends Activity {
 
     private Retrofit retrofit;
 
     EditText username, password;
     Button login, register;
+    private AlertDialog dlg;
 
     private AwesomeValidation awesomeValidation;
 
@@ -52,18 +57,18 @@ public class LoginActivity extends Activity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent registerIntent = new Intent(LoginActivity.this, RegisterActivity.class);
                 startActivity(registerIntent);
                 finish();
             }
         });
 
+
         login = findViewById(R.id.btnLogin);
-        final LoadingDialog loadingDialog = new LoadingDialog(LoginActivity.this);
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadingDialog.startLoadingDialog();
                 if (username.getText().toString().length() == 0) {
                     username.setError("Username harus diisi");
                 } else if (password.getText().toString().length() == 0) {
@@ -90,14 +95,18 @@ public class LoginActivity extends Activity {
 
         Call<LoginResult> result = apiService.loginRequest(loginBody);
 
+        DialogUtility.showDialog(R.raw.stay_save, "Loading : Login", LoginActivity.this);
+
         result.enqueue(new Callback<LoginResult>() {
             @Override
             public void onResponse(Call<LoginResult> call, Response<LoginResult> response) {
                 try {
+                    sleep(4000);
+                    DialogUtility.closeAllDialog();
                     if (response.body().isSuccess()) {
                         Log.e("TAG", "Login Success" + response.body().toString());
                         AppService.setToken("Bearer " + response.body().getToken());
-                        Intent mainIntent = new Intent(LoginActivity.this, BookActivity.class);
+                        Intent mainIntent = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(mainIntent);
                         finish();
                     } else {

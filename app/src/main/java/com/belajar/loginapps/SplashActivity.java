@@ -5,13 +5,16 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.belajar.loginapps.dummy.DialogUtility;
+
 public class SplashActivity extends Activity {
 
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.dialog_layout);
+        DialogUtility.showDialog(R.raw.newflash, "Loading : Get Data Buku", SplashActivity.this);
         Thread thread = new Thread(){
             public void run(){
                 try{

@@ -1,5 +1,6 @@
 package com.belajar.loginapps.adapter;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Base64;
@@ -10,18 +11,26 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.belajar.loginapps.R;
+import com.belajar.loginapps.apihelper.AppService;
+import com.belajar.loginapps.fragment.BookHomeFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.MemberViewHolder> {
     private List<BookAdapter> bookAdapterList;
+    private Context mcontext;
 
-    public MemberListAdapter() {
+    private BookHomeFragment fragment;
+
+    public MemberListAdapter(Context mcontext, BookHomeFragment fragment) {
         bookAdapterList = new ArrayList<>();
+        this.mcontext = mcontext;
+        this.fragment = fragment;
     }
 
     private void add(BookAdapter item) {
@@ -42,24 +51,33 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.Me
         return memberViewHolder;
     }
 
-    private Bitmap getBitmap(String base64String) {
-        byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
-        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
-        return decodedByte;
-    }
-
     @Override
-    public void onBindViewHolder(MemberViewHolder holder, final int position) {
+    public void onBindViewHolder(MemberViewHolder holder, int position) {
         final BookAdapter bookAdapter = bookAdapterList.get(position);
+
         Bitmap bitmap = getBitmap(bookAdapter.getThumb());
+
         holder.bookThumb.setImageBitmap(bitmap);
         holder.judul.setText(bookAdapter.getJudul());
         holder.penulis.setText(bookAdapter.getPenulis());
-        holder.bookThumb.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Log.e("TAG", "onBindViewHolder: " + bookAdapterList.get(position).getId());
-            }
+
+        int bukuId = bookAdapterList.get(position).getId();
+
+        holder.bookThumb.setOnClickListener(view -> {
+            Log.e("TAG", "onBindViewHolder: " + bookAdapterList.get(position).getId());
+//            fragment.Hello();
+            fragment.openFragmentView(bukuId);
+            AppService.setIdBuku(bukuId);
+        });
+
+        holder.judul.setOnLongClickListener(view -> {
+            Log.e("TAG", "long clik listener: ");
+            return true;
+        });
+
+        holder.bookThumb.setOnLongClickListener(view -> {
+            Log.e("TAG", "long click listener: ");
+            return true;
         });
     }
 
@@ -87,9 +105,16 @@ public class MemberListAdapter extends RecyclerView.Adapter<MemberListAdapter.Me
         public MemberViewHolder(View itemView) {
             super(itemView);
 
-            bookThumb = itemView.findViewById((R.id.thumb));
+            bookThumb = itemView.findViewById(R.id.thumb);
             judul = itemView.findViewById(R.id.judul);
             penulis = itemView.findViewById(R.id.penulis);
         }
+    }
+
+    private Bitmap getBitmap(String base64String) {
+        byte[] decodedString = Base64.decode(base64String, Base64.DEFAULT);
+        Bitmap decodedByte = BitmapFactory.decodeByteArray(decodedString, 0, decodedString.length);
+
+        return decodedByte;
     }
 }

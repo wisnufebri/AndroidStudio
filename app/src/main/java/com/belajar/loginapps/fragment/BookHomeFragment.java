@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.belajar.loginapps.MainActivity;
 import com.belajar.loginapps.R;
 import com.belajar.loginapps.adapter.BookAdapter;
 import com.belajar.loginapps.adapter.MemberListAdapter;
@@ -29,11 +30,13 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class BookHomeFragment<view> extends Fragment {
+public class BookHomeFragment extends Fragment {
 
     private View view;
     private Retrofit retrofit;
+
     private String TAG = "homefragment";
+
     private RecyclerView listMember;
     private LinearLayoutManager linearLayoutManager;
     private MemberListAdapter memberListAdapter;
@@ -57,7 +60,7 @@ public class BookHomeFragment<view> extends Fragment {
     private void initRecyclerView() {
         listMember = view.findViewById(R.id.listMember);
         linearLayoutManager = new LinearLayoutManager(context);
-        memberListAdapter = new MemberListAdapter();
+        memberListAdapter = new MemberListAdapter(context, this);
         listMember.setLayoutManager(linearLayoutManager);
         listMember.setAdapter(memberListAdapter);
     }
@@ -95,5 +98,9 @@ public class BookHomeFragment<view> extends Fragment {
             bookAdapterList.add(bookAdapter);
         }
         memberListAdapter.addAll(bookAdapterList);
+    }
+
+    public void openFragmentView(int id) {
+        ((MainActivity)getActivity()).openViewFragment();
     }
 }

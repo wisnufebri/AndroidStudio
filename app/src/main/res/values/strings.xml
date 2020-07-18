@@ -34,4 +34,13 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragment">requestKey</string>
+
+
+    <!--login string -->
+    <string name="login_username">Username</string>
+    <string name="login_password">Password</string>
+    <string name="login_btn_login">Login</string>
+    <string name="login_txt_dont_have_acc">Dont Have Account?</string>
+    <string name="login_txt_signup">SignUp</string>
+    <!-- TODO: Remove or change this placeholder text -->
 </resources>

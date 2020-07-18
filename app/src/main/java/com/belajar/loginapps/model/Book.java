@@ -4,25 +4,43 @@ import android.text.Editable;
 import android.widget.EditText;
 
 public class Book {
-    int id;
-    String judul;
-    String penerbit;
-    String penulis;
-    int tahun;
-    int harga;
-    String thumb;
+
+    private int id;
+    private String judul;
+    private String penerbit;
+    private String penulis;
+    private int harga;
+    private int userid;
+    private String tahun;
+    private String thumb;
+
 
     public Book() {
     }
 
-    public Book(int id, String judul, String penerbit, String penulis, int tahun, int harga, String thumb) {
+    public Book(String judul, String penulis, String penerbit) {
+        this.judul = judul;
+        this.penerbit = penerbit;
+        this.penulis = penulis;
+    }
+
+    public Book(String judul, String penerbit, String penulis, int harga, int userid, String thumb, String tahun) {
+        this.judul = judul;
+        this.penerbit = penerbit;
+        this.penulis = penulis;
+        this.harga = harga;
+        this.userid = userid;
+        this.thumb = thumb;
+        this.tahun = tahun;
+    }
+
+    public Book(int id, String judul, String penerbit, String penulis, int harga, int userid) {
         this.id = id;
         this.judul = judul;
         this.penerbit = penerbit;
         this.penulis = penulis;
-        this.tahun = tahun;
         this.harga = harga;
-        this.thumb = thumb;
+        this.userid = userid;
     }
 
     public int getId() {
@@ -57,14 +75,6 @@ public class Book {
         this.penulis = penulis;
     }
 
-    public int getTahun() {
-        return tahun;
-    }
-
-    public void setTahun(int tahun) {
-        this.tahun = tahun;
-    }
-
     public int getHarga() {
         return harga;
     }
@@ -73,11 +83,42 @@ public class Book {
         this.harga = harga;
     }
 
+    public int getUserid() {
+        return userid;
+    }
+
+    public void setUserid(int userid) {
+        this.userid = userid;
+    }
+
     public String getThumb() {
         return thumb;
     }
 
     public void setThumb(String thumb) {
         this.thumb = thumb;
+    }
+
+
+    public String getTahun() {
+        return tahun;
+    }
+
+    public void setTahun(String tahun) {
+        this.tahun = tahun;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", judul='" + judul + '\'' +
+                ", penerbit='" + penerbit + '\'' +
+                ", penulis='" + penulis + '\'' +
+                ", harga=" + harga +
+                ", userid=" + userid +
+                ", tahun=" + tahun +
+                ", thumb='" + thumb + '\'' +
+                '}';
     }
 }

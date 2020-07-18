@@ -9,7 +9,6 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import android.text.InputType;
 import android.util.Base64;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,37 +20,22 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.basgeekball.awesomevalidation.ValidationStyle;
-import com.belajar.loginapps.BookActivity;
-import com.belajar.loginapps.LoadingDialog;
-import com.belajar.loginapps.LoginActivity;
 import com.belajar.loginapps.MainActivity;
 import com.belajar.loginapps.R;
-import com.belajar.loginapps.RegisterActivity;
-import com.belajar.loginapps.adapter.BookAdapter;
 import com.belajar.loginapps.apihelper.ApiResponse;
 import com.belajar.loginapps.apihelper.AppService;
 import com.belajar.loginapps.apihelper.BookApiService;
 import com.belajar.loginapps.apihelper.RetrofitClient;
-import com.belajar.loginapps.apihelper.Utility;
 import com.belajar.loginapps.model.Book;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-
-import static android.content.ContentValues.TAG;
 
 public class InsertHomeFragment extends Fragment implements View.OnClickListener {
 
@@ -139,7 +123,7 @@ public class InsertHomeFragment extends Fragment implements View.OnClickListener
         book.setJudul(judul);
         book.setPenulis(penulis);
         book.setPenerbit(penerbit);
-        book.setTahun(Integer.valueOf(tahun));
+        book.setTahun(tahun);
         book.setThumb(base64Image);
 
         BookApiService apiService = retrofit.create(BookApiService.class);
@@ -151,7 +135,7 @@ public class InsertHomeFragment extends Fragment implements View.OnClickListener
                     Log.e(TAG, "Berhasil Add buku");
                 } else {
                     Log.e(TAG, "Gagal add buku" + response.body().toString());
-                    Intent mainIntent = new Intent(getActivity(), BookActivity.class);
+                    Intent mainIntent = new Intent(getActivity(), MainActivity.class);
                     startActivity(mainIntent);
                 }
             }
