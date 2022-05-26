@@ -1,4 +1,4 @@
-package com.belajar.loginapps.dummy;
+package com.wisnu.britest.dummy;
 
 import java.util.ArrayList;
 import java.util.HashMap;

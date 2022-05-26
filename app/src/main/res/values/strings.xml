@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">IMAKO</string>
+    <string name="app_name">BRI</string>
 
     <string-array name="roles_users">
         <item>Admin</item>

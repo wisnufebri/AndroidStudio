@@ -31,4 +31,14 @@
 
     <color name="blue800">#1565c0</color>
 
+    <color name="colorWhite">#FFFFFF</color>
+    <color name="colorRed">#f44336</color>
+    <color name="colorBlack">#111111</color>
+    <color name="colorBlack2">#444444</color>
+    <color name="colorBlack3">#555555</color>
+    <color name="colorGray">#888888</color>
+    <color name="lightGray">#E2E1E1</color>
+    <color name="extraLightGray">#8DE2E1E1</color>
+    <color name="bgCard">#FCFCFC</color>
+
 </resources>

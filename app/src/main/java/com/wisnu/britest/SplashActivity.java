@@ -1,11 +1,10 @@
-package com.belajar.loginapps;
+package com.wisnu.britest;
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 
-import com.belajar.loginapps.dummy.DialogUtility;
+import com.wisnu.britest.dummy.DialogUtility;
 
 public class SplashActivity extends Activity {
 

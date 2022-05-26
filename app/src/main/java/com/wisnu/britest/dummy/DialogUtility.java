@@ -1,9 +1,8 @@
-package com.belajar.loginapps.dummy;
+package com.wisnu.britest.dummy;
 
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.airbnb.lottie.LottieAnimationView;
-import com.belajar.loginapps.R;
+import com.wisnu.britest.R;
 
 public class DialogUtility {
 

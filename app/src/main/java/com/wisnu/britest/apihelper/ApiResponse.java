@@ -1,6 +1,4 @@
-package com.belajar.loginapps.apihelper;
-
-import com.belajar.loginapps.model.Record;
+package com.wisnu.britest.apihelper;
 
 public class ApiResponse {
     private boolean success;
